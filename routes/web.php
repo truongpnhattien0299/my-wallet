@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SpendingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,12 +15,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login', [HomeController::class, 'Login'])->name('login');
-Route::post('/login', [HomeController::class, 'postLogin'])->name('postLogin');
-Route::get('/register', [HomeController::class, 'Register'])->name('register');
-Route::post('/register', [HomeController::class, 'postRegister'])->name('postRegister');
+Route::get('login', [HomeController::class, 'Login'])->name('login');
+Route::post('login', [HomeController::class, 'postLogin'])->name('postLogin');
+Route::get('register', [HomeController::class, 'Register'])->name('register');
+Route::post('register', [HomeController::class, 'postRegister'])->name('postRegister');
 
 Route::middleware(['checklogin'])->group(function () {
-    Route::get('/dashboard', [HomeController::class, 'Dashboard'])->name('dashboard');
+    Route::get('dashboard', [HomeController::class, 'Dashboard'])->name('dashboard');
     Route::get('signout', [HomeController::class, 'SignOut'])->name('signout');
+
+    Route::prefix('spending')->group(function () {
+        Route::get('create', [SpendingController::class, 'create'])->name('createSpending');
+    });
 });

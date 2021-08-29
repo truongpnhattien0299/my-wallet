@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{ url('/assets/css/style.css') }}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{ url('/assets/images/favicon.ico') }}" />
+    @yield('header_script')
 </head>
 
 <body>
@@ -25,8 +26,8 @@
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo" href="index.html"><img src="assets/images/logo.svg" alt="logo" /></a>
-                <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg"
+                <a class="navbar-brand brand-logo" href="index.html"><img src="{{ url('/assets/images/logo.svg') }}" alt="logo" /></a>
+                <a class="navbar-brand brand-logo-mini" href="index.html"><img src="{{ url('/assets/images/logo-mini.svg') }}"
                         alt="logo" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-stretch">
@@ -49,11 +50,11 @@
                         <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown"
                             aria-expanded="false">
                             <div class="nav-profile-img">
-                                <img src="assets/images/faces/face1.jpg" alt="image">
+                                <img src="{{ url('/assets/images/faces/face1.jpg') }}" alt="image">
                                 <span class="availability-status online"></span>
                             </div>
                             <div class="nav-profile-text">
-                                <p class="mb-1 text-black">David Greymaax</p>
+                                <p class="mb-1 text-black">{{ Auth::user()->name }}</p>
                             </div>
                         </a>
                         <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
@@ -81,7 +82,7 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item preview-item">
                                 <div class="preview-thumbnail">
-                                    <img src="assets/images/faces/face4.jpg" alt="image" class="profile-pic">
+                                    <img src="{{ url('/assets/images/faces/face4.jpg') }}" alt="image" class="profile-pic">
                                 </div>
                                 <div
                                     class="preview-item-content d-flex align-items-start flex-column justify-content-center">
@@ -93,7 +94,7 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item preview-item">
                                 <div class="preview-thumbnail">
-                                    <img src="assets/images/faces/face2.jpg" alt="image" class="profile-pic">
+                                    <img src="{{ url('/assets/images/faces/face2.jpg') }}" alt="image" class="profile-pic">
                                 </div>
                                 <div
                                     class="preview-item-content d-flex align-items-start flex-column justify-content-center">
@@ -196,12 +197,12 @@
                     <li class="nav-item nav-profile">
                         <a href="#" class="nav-link">
                             <div class="nav-profile-image">
-                                <img src="assets/images/faces/face1.jpg" alt="profile">
+                                <img src="{{ url('/assets/images/faces/face1.jpg') }}" alt="profile">
                                 <span class="login-status online"></span>
                                 <!--change to offline or busy as needed-->
                             </div>
                             <div class="nav-profile-text d-flex flex-column">
-                                <span class="font-weight-bold mb-2">David Grey. H</span>
+                                <span class="font-weight-bold mb-2">{{ Auth::user()->name }}</span>
                                 <span class="text-secondary text-small">Project Manager</span>
                             </div>
                             <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
@@ -278,9 +279,9 @@
                     <li class="nav-item sidebar-actions">
                         <span class="nav-link">
                             <div class="border-bottom">
-                                <h6 class="font-weight-normal mb-3">Projects</h6>
+                                <h6 class="font-weight-normal mb-3">Spending</h6>
                             </div>
-                            <button class="btn btn-block btn-lg btn-gradient-primary mt-4">+ Add a project</button>
+                            <a href="{{ route('createSpending') }}" class="btn btn-block btn-lg btn-gradient-primary mt-4">+ Add a project</a>
                             <div class="mt-4">
                                 <div class="border-bottom">
                                     <p class="text-secondary">Categories</p>
@@ -295,7 +296,21 @@
                 </ul>
             </nav>
             <!-- partial -->
-            @yield('content')
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    @yield('content')
+                </div>
+                <!-- partial:partials/_footer.html -->
+                <footer class="footer">
+                    <div class="container-fluid clearfix">
+                        <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright ©
+                            bootstrapdash.com 2020</span>
+                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a
+                                href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap
+                                admin templates </a> from Bootstrapdash.com</span>
+                    </div>
+                </footer>
+            </div>
         </div>
         <!-- page-body-wrapper ends -->
     </div>
@@ -315,6 +330,7 @@
     <script src="{{ url('/assets/js/dashboard.js') }}"></script>
     <script src="{{ url('/assets/js/todolist.js') }}"></script>
     <!-- End custom js for this page -->
+    @yield('footer_script')
 </body>
 
 </html>
