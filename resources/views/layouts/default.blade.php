@@ -217,7 +217,7 @@
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
                             aria-controls="ui-basic">
-                            <span class="menu-title">Basic UI Elements</span>
+                            <span class="menu-title">Spending</span>
                             <i class="menu-arrow"></i>
                             <i class="mdi mdi-crosshairs-gps menu-icon"></i>
                         </a>
@@ -231,8 +231,8 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/icons/mdi.html">
-                            <span class="menu-title">Icons</span>
+                        <a class="nav-link" href="{{ route('cards.index') }}">
+                            <span class="menu-title">Cards</span>
                             <i class="mdi mdi-contacts menu-icon"></i>
                         </a>
                     </li>

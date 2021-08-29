@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SpendingController;
+use App\Http\Controllers\CardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,4 +28,6 @@ Route::middleware(['checklogin'])->group(function () {
     Route::prefix('spending')->group(function () {
         Route::get('create', [SpendingController::class, 'create'])->name('createSpending');
     });
+
+    Route::resource('cards', CardController::class);
 });
